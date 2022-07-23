@@ -22,34 +22,48 @@ config = {
     }],
 }
 
-def gui_download():
-    url = inputtxt.get(1.0, "end-1c")
+def download(url):
     
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with youtube_dl.YoutubeDL(config) as ydl:
         ydl.download([url])
         title = ydl.extract_info(url, download = False)["title"]
     print("Done")
 
-if GUI:
-    # TextBox Creation
-    inputtxt = tk.Text(frame,
-                       height = 5,
-                       width = 20)
-      
-    inputtxt.pack()
-      
-    # Button Creation
-    printButton = tk.Button(frame,
-                            text = "Download", 
-                            command = gui_download)
-    printButton.pack()
-      
-    # Label Creation
-    lbl = tk.Label(frame, text = "")
-    lbl.pack()
-    frame.mainloop()
-else:
+def gui_download():
+    url = inputtxt.get(1.0, "end-1c")
+    
+    with youtube_dl.YoutubeDL(config) as ydl:
+        ydl.download([url])
+        title = ydl.extract_info(url, download = False)["title"]
+    print("Done")
+
+
+
+
+if __name__ == "__main__":
     download(url)
+
+
+# if GUI:
+#     # TextBox Creation
+#     inputtxt = tk.Text(frame,
+#                        height = 5,
+#                        width = 20)
+      
+#     inputtxt.pack()
+      
+#     # Button Creation
+#     printButton = tk.Button(frame,
+#                             text = "Download", 
+#                             command = gui_download)
+#     printButton.pack()
+      
+#     # Label Creation
+#     lbl = tk.Label(frame, text = "")
+#     lbl.pack()
+#     frame.mainloop()
+# else:
+#     download(url)
 
 
 
