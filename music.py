@@ -1,5 +1,9 @@
 import ffmpeg
 import youtube_dl
+from youtubesearchpython import CustomSearch, VideoSortOrder
+
+import os
+
 
 class Track:
     def __init__(self,
@@ -19,6 +23,8 @@ class Track:
                    dict_entry['album_name'])
     
     def create_path(self):
+        if not os.path.exists("Downloads"):
+            os.mkdir("Downloads")
         if not os.path.exists(os.path.join("Downloads", self.artist)):
             os.mkdir(os.path.join("Downloads", self.artist))
         if not os.path.exists(os.path.join("Downloads", self.artist, self.album)):
